@@ -1,4 +1,4 @@
-CREATE TABLE users(
+CREATE TABLE IF NOT EXISTS users(
                       id bigserial primary key,
                       username varchar not null unique,
                       phone_number varchar not null unique,
@@ -8,7 +8,7 @@ CREATE TABLE users(
                       age smallint not null
 );
 
-CREATE TABLE pfp_pictures_user(
+CREATE TABLE IF NOT EXISTS pfp_pictures_user(
                                   id bigserial primary key,
                                   original_file_name varchar not null,
                                   mime_type varchar not null,
@@ -16,17 +16,17 @@ CREATE TABLE pfp_pictures_user(
                                   user_id bigint references users(id)
 );
 
-CREATE TABLE chat_rooms(
+CREATE TABLE IF NOT EXISTS chat_rooms(
                            id bigserial primary key,
                            type varchar not null
 );
 
-CREATE TABLE chat_room_users(
+CREATE TABLE IF NOT EXISTS chat_room_users(
                                 chat_id bigint references chat_rooms(id),
                                 user_id bigint references users(id)
 );
 
-CREATE TABLE messages(
+CREATE TABLE IF NOT EXISTS messages(
                          id bigserial primary key,
                          chat_id bigint references chat_rooms(id),
                          sender_id bigint references users(id),
