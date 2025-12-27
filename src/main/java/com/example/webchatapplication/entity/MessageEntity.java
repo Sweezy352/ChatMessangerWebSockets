@@ -9,6 +9,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "messages")
@@ -31,6 +32,8 @@ public class MessageEntity extends BaseEntity{
     @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private MessageStatus messageStatus;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "messageEntity")
+    private List<AttachmentEntity> attachmentEntities;
 
     @PrePersist
     public void prePersist(){
