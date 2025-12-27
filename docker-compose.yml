@@ -1,0 +1,61 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+      - minio
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/chat_messanger
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - JWT_SECRETKEY=VGhpc1NlY3JldEtle
+      - JWT_TOKEN_EXPIRATION=3600000
+      - MINIO_URL=http://minio:9000
+      - MINIO_ACCESS-KEY=minioadmin
+      - MINIO_SECRET-KEY=minioadmin
+
+    networks:
+      custom_net:
+        - ipv4_address: 172.30.0.10
+
+
+  db:
+    image: postgres:15
+    ports:
+      - "5434:5432"
+    environment:
+      - POSTGRES_DB=chat_messanger
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      custom_net:
+        - ipv4_address: 172.30.0.2
+
+
+  minio:
+    image: minio/minio
+    ports:
+      - "9000:9000"
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    volumes:
+      - minio-data:/data
+    command:
+      - server
+      - --console-address
+      - ":9001"
+      - /data
+    networks:
+      custom_net:
+        - ipv4_address: 172.30.0.3
+
+
+volumes:
+  minio-data:
+
+networks:
+  custom_net:
+    driver: bridge
