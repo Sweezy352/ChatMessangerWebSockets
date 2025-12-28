@@ -30,6 +30,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public TokenAuthenticationDto login(AuthenticationRequest authenticationRequest) {
+
         UserEntity userEntity = userRepository.findByUsernameOrPhoneNumber(authenticationRequest.getIdentifier(), authenticationRequest.getIdentifier()).orElseThrow(() -> new UserNotFoundException("User not found"));
         if(!passwordEncoder.matches(authenticationRequest.getPassword(), userEntity.getPassword())) throw new AuthenticationFailedException("Incorrect username or password");
         return new TokenAuthenticationDto(jwtCore.generateJwtToken(userEntity));

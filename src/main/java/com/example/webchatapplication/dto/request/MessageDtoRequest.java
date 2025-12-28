@@ -12,5 +12,6 @@ import lombok.*;
 public class MessageDtoRequest {
     @NotNull(message = "Cannot send message without context")
     @NotEmpty(message = "Cannot send message without context")
-    private String context;
+    private String content;
+    private Long recipientId;
 }
