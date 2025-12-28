@@ -25,6 +25,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<TokenAuthenticationDto> login(@RequestBody AuthenticationRequest authenticationRequest) throws BaseException{
+        System.out.println("----------->>>>>>>>>>>>>" + authenticationRequest.getIdentifier() + " " + authenticationRequest.getPassword());
         return ResponseEntity.ok(authService.login(authenticationRequest));
     }
 
@@ -38,8 +39,4 @@ public class AuthController {
         return ResponseEntity.ok(authService.verifyCodeFromEmail(email, code));
     }
 
-    @GetMapping("/get-current")
-    public ResponseEntity<UserDtoResponse> getCurrentAuthenticated(){
-        return ResponseEntity.ok(userMapper.toDtoResponse(authService.getCurrentAuthenticated()));
-    }
 }

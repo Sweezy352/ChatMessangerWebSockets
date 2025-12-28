@@ -2,6 +2,7 @@ package com.example.webchatapplication.controller;
 
 import com.example.webchatapplication.dto.response.UserDtoResponse;
 import com.example.webchatapplication.dto.view.UserDtoView;
+import com.example.webchatapplication.exception.BaseException;
 import com.example.webchatapplication.mapper.UserMapper;
 import com.example.webchatapplication.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,17 +19,17 @@ public class UserController {
     private final UserMapper userMapper;
 
     @GetMapping("/get-by-id/{id}")
-    public ResponseEntity<UserDtoResponse> getById(@PathVariable("id") Long id){
+    public ResponseEntity<UserDtoResponse> getById(@PathVariable("id") Long id) throws BaseException {
         return ResponseEntity.ok(userMapper.toDtoResponse(userService.getById(id)));
     }
 
     @GetMapping("/get-by-username")
-    public ResponseEntity<List<UserDtoView>> getByUsername(@RequestParam("username") String username){
+    public ResponseEntity<List<UserDtoView>> getByUsername(@RequestParam("username") String username) throws BaseException{
         return ResponseEntity.ok(userMapper.toDtoViewList(userService.getByUsername(username)));
     }
 
     @PostMapping("/set-bio")
-    public ResponseEntity<UserDtoResponse> setBio(@RequestParam("bio") String bio){
+    public ResponseEntity<UserDtoResponse> setBio(@RequestParam("bio") String bio) throws BaseException{
         return ResponseEntity.ok(userMapper.toDtoResponse(userService.setBio(bio)));
     }
 }

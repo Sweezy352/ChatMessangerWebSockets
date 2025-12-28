@@ -16,4 +16,5 @@ public class MessageDtoResponse {
     private UserDtoView sender;
     private LocalDateTime dateSent;
     private String status;
+    private Long chatId;
 }

@@ -9,5 +9,9 @@ import java.util.Optional;
 
 @Repository
 public interface MessageRepository extends JpaRepository<MessageEntity, Long> {
-    Optional<List<MessageEntity>> findByContentContaining(String content);
+    List<MessageEntity> findByContentContaining(String content);
+
+    List<MessageEntity> findAllByChatRoomEntityId(Long chatId);
+
+    List<MessageEntity> findByChatRoomEntityIdAndContentContaining(Long chatId, String context);
 }

@@ -25,7 +25,7 @@ public class MessageEntity extends BaseEntity{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_id", referencedColumnName = "id")
     private UserEntity sender;
-    @Column(nullable = false)
+    @Column(name = "content", nullable = false)
     private String content;
     @Column(name = "date_sent")
     private LocalDateTime dateSent;
