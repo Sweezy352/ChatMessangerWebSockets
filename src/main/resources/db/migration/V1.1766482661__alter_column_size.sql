@@ -1,0 +1,1 @@
+ALTER TABLE pfp_pictures_user ALTER COLUMN size TYPE bigint USING (size::bigint);

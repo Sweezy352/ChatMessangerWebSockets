@@ -1,0 +1,15 @@
+### Upload Profile Picture
+POST http://localhost:8080/api/profile-pictures/upload
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ1c2VyXzEiLCJzdWIiOiJ1c2VyXzEiLCJpYXQiOjE3NjY4Mjk5NTYsImV4cCI6MTc2NjgzMDMxNn0.0xQ54xhH0P_QLAuQErdbyRPQTxRgihU9H4bDP0EGcBkDw3X5p89XsOIKZGcMxZvH
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="avatar.jpg"
+Content-Type: image/jpeg
+
+< /home/sweezy/IdeaProjects/WebChatApplication/src/main/resources/static/photo_2025-12-26_19-11-36.jpg
+--WebAppBoundary--
+
+###
+GET http://localhost:8080/api/profile-pictures/stream?pictureId=1
+Authorization: Bearer eyJhbGciOiJIUzM4NCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJ1c2VyXzEiLCJzdWIiOiJ1c2VyXzEiLCJpYXQiOjE3NjY4MzAzNTUsImV4cCI6MTc2NjgzMDcxNX0.C6WAGrFeowG6IdQzn1B5DlGdlW0icLhFDHTYs_PajeQRyjioj8HuO9FIgPlcHY7g
